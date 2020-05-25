@@ -40,5 +40,4 @@ const getNumList = () => {
   return phoneNumList.sort();
 };
 
-// console.log(getNumList());
 module.exports = getNumList;
