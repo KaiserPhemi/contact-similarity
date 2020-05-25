@@ -37,7 +37,8 @@ const getNumList = () => {
     phoneNumList.push(phoneNum());
     counter--;
   }
-  return phoneNumList;
+  return phoneNumList.sort();
 };
 
+// console.log(getNumList());
 module.exports = getNumList;
