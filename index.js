@@ -3,33 +3,44 @@ const phoneDirectory = require("./src/userObject");
 const directory = phoneDirectory();
 
 /**
- *
- * @param {object} arr1
- * @param {object} arr2
- */
-const checkArrayItem = (arr1, arr2) => {
-  return arr1.some((phoneNum) => arr2.indexOf(phoneNum) >= 0);
-};
-
-/**
  * @desc gets users with similar contacts
  */
 const getSimilarContacts = () => {
-  let userDetail = {};
-  let prevArr;
-  const similarContactList = directory.forEach((user, index) => {
-    const currArr = user.contacts;
-    if (currArr === prevArr) {
-      console.log("we inside");
-      const contactExist = prevArr.some(
-        (contact) => currArr.indexOf(contact) >= 0
-      );
-      if (contactExist) {
-        console.log("we here", prevArr, currArr);
+  // let prevArr = null;
+
+  // const contactArr = directory.map((user) => user.contacts);
+  // // console.log(contactArr);
+
+  // // for (const user of directory) {
+  // //   const currArr = user.contacts;
+  // //   const similarityLevel = null;
+  // //   if (prevArr === currArr) {
+  // //     console.log("current user", user.name);
+  // //     const isSimilar = currArr.some((item) => contactArr.inclues(item));
+  // //     if (isSimilar) {
+  // //       commonContact.push({ ...user });
+  // //     }
+  // //   }
+
+  // //   prevArr = currArr;
+  // // }
+
+  // return commonContact;
+
+  let commonContact = [];
+  for (let i = 0; i < directory.length - 1; i++) {
+    const currUser = directory[i];
+    for (let j = i + 1; j < directory.length; j++) {
+      const nextUser = directory[j];
+      const isSimilar = currUser["contacts"].some((item) => {
+        return nextUser["contacts"].includes(item);
+      });
+      if (isSimilar) {
+        commonContact.push({ currUser, nextUser });
       }
     }
-    prevArr = currArr;
-  });
+  }
+  return commonContact;
 };
 
 console.log(getSimilarContacts());
