@@ -10,6 +10,6 @@
   "author": "KaiserPhemi <kaiser.phemi@protonmail.ch>",
   "license": "MIT",
   "devDependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   }
 }
